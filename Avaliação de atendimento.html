@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Avaliação de Atendimento</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+    .form-container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    textarea, input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px;
+      background: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #004c99;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Avalie nosso atendimento</h2>
+    <form id="formulario">
+      <label for="nome">Seu nome:</label>
+      <input type="text" id="nome" required />
+
+      <label for="nota">Nota (1 a 5):</label>
+      <select id="nota" required>
+        <option value="">Selecione</option>
+        <option>1 - Ruim</option>
+        <option>2</option>
+        <option>3 - Regular</option>
+        <option>4</option>
+        <option>5 - Excelente</option>
+      </select>
+
+      <label for="comentario">Comentário:</label>
+      <textarea id="comentario" rows="4"></textarea>
+
+      <button type="submit">Enviar Avaliação</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("formulario").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const nome = document.getElementById("nome").value;
+      const nota = document.getElementById("nota").value;
+      const comentario = document.getElementById("comentario").value;
+
+      const mensagem = `📝 *Nova avaliação recebida:*\n\n👤 Nome: ${nome}\n⭐ Nota: ${nota}\n💬 Comentário: ${comentario || 'Nenhum'}\n📅 Data: ${new Date().toLocaleDateString()}`;
+
+      const numero = "5575991197594"; // número fixo para receber a resposta
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+      window.open(url, "_blank");
+    });
+  </script>
+</body>
+</html>
